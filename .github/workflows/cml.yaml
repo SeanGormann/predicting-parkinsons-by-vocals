@@ -1,0 +1,27 @@
+name: predicting-parkinsons-by-vocals
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # may need to setup NodeJS & Python3 on e.g. self-hosted
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '16'
+      # - uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.x'
+      - uses: iterative/setup-cml@v1
+      - name: Train model
+        env:
+          REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN}}
+        run: |
+          pip install -r requirements.txt
+          python Motor_UPDRS_Predicting_Notebook.py
+          
+          echo "## Data-Vis" > report.md
+          echo "final_stats" >> report.md
+          cml-publish residuals.png --md >> report.md
+          
+          cml-send-comment report.md
