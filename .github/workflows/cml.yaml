@@ -14,6 +14,8 @@ jobs:
       #     python-version: '3.x'
       - uses: iterative/setup-cml@v1
       - name: Train model
+        env:
+          REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN}}
         run: |
           pip install -r requirements.txt
           python Motor_UPDRS_Predicting_Notebook.py
