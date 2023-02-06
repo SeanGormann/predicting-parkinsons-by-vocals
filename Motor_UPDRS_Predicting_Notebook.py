@@ -17,7 +17,6 @@ parkinsons = pd.read_csv("parkinsons_updrs.data")
 # In[2]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 parkinsons.hist(bins=50, figsize=(20,15))
 plt.show()
