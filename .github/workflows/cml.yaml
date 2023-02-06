@@ -16,7 +16,7 @@ jobs:
       - name: Train model
         run: |
           pip install -r requirements.txt
-          python Motor_UPDRS_Predicting_Notebook.ipynb
+          python Motor_UPDRS_Predicting_Notebook.py
           
           echo "## Data-Vis" > report.md
           echo "final_stats" >> report.md
